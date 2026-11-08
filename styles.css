@@ -4,8 +4,8 @@
     --ink: #1b2030;
     --muted: #656b79;
     --line: #dedbd2;
-    --blue: #4459d9;
-    --orange: #e26035;
+    --brand: #a83c20;
+    --orange: #d55129;
     --card: #fffefa;
 }
 
@@ -75,7 +75,7 @@ a:focus-visible {
 .brand-logo {
     display: block;
     width: 140px;
-    height: 74px;
+    height: auto;
     object-fit: contain;
 }
 
@@ -94,7 +94,7 @@ a:focus-visible {
 }
 
 .site-header nav a:hover {
-    color: var(--blue);
+    color: var(--brand);
 }
 
 .site-header nav .nav-contact {
@@ -127,7 +127,7 @@ a:focus-visible {
     align-items: center;
     gap: 10px;
     margin: 0 0 22px;
-    color: var(--blue);
+    color: var(--brand);
 }
 
 .eyebrow::before {
@@ -153,7 +153,7 @@ h1 {
 }
 
 h1 span {
-    color: var(--blue);
+    color: var(--brand);
     font-style: italic;
 }
 
@@ -197,18 +197,18 @@ h1 span {
 }
 
 .button-primary:hover {
-    border-color: var(--blue);
-    background: var(--blue);
+    border-color: var(--brand);
+    background: var(--brand);
 }
 
 .button-secondary {
     border-color: #c9cadd;
-    color: var(--blue);
+    color: var(--brand);
 }
 
 .button-secondary:hover {
-    border-color: var(--blue);
-    background: var(--blue);
+    border-color: var(--brand);
+    background: var(--brand);
     color: #fff;
 }
 
@@ -247,9 +247,6 @@ h1 span {
     display: block;
     width: 100%;
     height: auto;
-    border: 6px solid var(--card);
-    background: #fbfdff;
-    box-shadow: 0 8px 25px rgba(30, 34, 45, .1);
 }
 
 .profile-caption {
@@ -265,7 +262,7 @@ h1 span {
 
 .section-kicker {
     margin: 0 0 10px;
-    color: var(--blue);
+    color: var(--brand);
 }
 
 h2 {
@@ -330,7 +327,7 @@ h2 {
 
 .project-number {
     margin: 0 0 34px;
-    color: var(--blue);
+    color: var(--brand);
 }
 
 .project-card h3 {
@@ -371,7 +368,7 @@ h2 {
 }
 
 .project-card > .project-source:hover {
-    color: var(--blue);
+    color: var(--brand);
 }
 
 .project-card > a:hover {
@@ -446,26 +443,25 @@ h2 {
 
     .site-header {
         min-height: 70px;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: 4px;
         padding: 8px 0;
     }
 
     .brand-logo {
-        width: 105px;
-        height: 55px;
+        width: clamp(64px, 20vw, 84px);
     }
 
     .site-header nav {
-        gap: 13px;
+        gap: clamp(6px, 2vw, 10px);
     }
 
     .site-header nav a {
-        font-size: .72rem;
+        font-size: .68rem;
     }
 
     .site-header nav .nav-contact {
-        padding-left: 12px;
+        padding-left: 8px;
     }
 
     .hero {
