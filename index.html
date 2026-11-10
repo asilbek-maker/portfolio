@@ -41,20 +41,40 @@
                     </div>
                 </div>
 
-                <aside class="profile-card" aria-label="Profile">
-                    <img class="avatar" src="avatar.svg" alt="Portrait of Asilbek" width="112" height="112">
-                    <div>
-                        <p class="profile-name">Asilbek</p>
-                        <p class="profile-role">Web developer · Student</p>
+                <figure class="editor" aria-labelledby="editor-caption">
+                    <figcaption id="editor-caption" class="sr-only">Profile summary: Asilbek is a front-end developer studying Computer Engineering, focused on accessibility and responsive design, shipping projects to GitHub Pages.</figcaption>
+                    <div class="editor-bar" aria-hidden="true">
+                        <span class="dots"><i></i><i></i><i></i></span>
+                        <span class="tab is-active">asilbek.js</span>
+                        <span class="tab">beck.css</span>
                     </div>
-                    <img class="profile-logo" src="beck-logo-transparent.png" alt="BECK logo" width="180" height="96">
-                    <ul class="profile-facts">
-                        <li><span>Focus</span>Front-end &amp; accessibility</li>
-                        <li><span>Stack</span>HTML · CSS · JavaScript</li>
-                        <li><span>Ships to</span>GitHub Pages</li>
-                    </ul>
-                </aside>
+<pre class="editor-code" aria-hidden="true"><code id="typed-code"><span class="k">const</span> <span class="v">asilbek</span> = {
+  <span class="p">role</span>: <span class="s">"Front-end developer"</span>,
+  <span class="p">studying</span>: <span class="s">"Computer Engineering"</span>,
+  <span class="p">brand</span>: <span class="s">"BECK"</span>,
+  <span class="p">focus</span>: [<span class="s">"accessibility"</span>, <span class="s">"responsive UI"</span>],
+  <span class="p">stack</span>: [<span class="s">"HTML"</span>, <span class="s">"CSS"</span>, <span class="s">"JavaScript"</span>],
+  <span class="p">ships</span>: <span class="s">"GitHub Pages"</span>,
+};
+
+<span class="v">asilbek</span>.<span class="f">build</span>(<span class="s">"something useful"</span>);</code></pre>
+                    <div class="editor-status" aria-hidden="true">
+                        <span><i class="ok"></i>main</span>
+                        <span>9 commits</span>
+                        <span>a11y 100</span>
+                        <span class="hide-sm">UTF-8</span>
+                    </div>
+                    <div class="editor-badge">
+                        <img src="avatar.svg" alt="Portrait of Asilbek" width="64" height="64">
+                        <span>
+                            <img class="badge-logo" src="beck-logo-transparent.png" alt="BECK logo" width="70" height="37">
+                            <small>Asilbek · Web developer</small>
+                        </span>
+                    </div>
+                </figure>
             </section>
+
+            <a class="scroll-hint" href="#about"><span class="mouse" aria-hidden="true"></span>Scroll to explore</a>
 
             <ul class="stats" aria-label="Highlights">
                 <li><strong>100</strong><span>Lighthouse accessibility score</span></li>
