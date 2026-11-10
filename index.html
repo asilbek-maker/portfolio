@@ -3,105 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f5f2eb">
-    <meta name="description" content="BECK is Asilbek's portfolio of web development projects, skills, and creative work.">
+    <meta name="theme-color" content="#11120f">
+    <meta name="description" content="BECK is the portfolio of Asilbek, a front-end web developer and Computer Engineering student building accessible, responsive web experiences.">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="BECK by Asilbek | Web Developer">
-    <meta property="og:description" content="Explore Asilbek's web projects, skills, and creative work under the BECK brand.">
+    <meta property="og:title" content="BECK by Asilbek | Front-end Web Developer">
+    <meta property="og:description" content="Selected web projects, skills and course work by Asilbek.">
     <meta property="og:url" content="https://asilbek-maker.github.io/portfolio/">
     <meta property="og:image" content="https://asilbek-maker.github.io/portfolio/beck-logo.png">
     <link rel="canonical" href="https://asilbek-maker.github.io/portfolio/">
-    <title>BECK by Asilbek | Web Developer</title>
+    <link rel="icon" href="beck-logo-transparent.png">
+    <title>BECK by Asilbek | Front-end Web Developer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to main content</a>
-    <div class="page-shell">
+    <div class="shell">
         <header class="site-header">
-            <a class="brand" href="#home" aria-label="BECK by Asilbek, home">
-                <img class="brand-logo" src="beck-logo-transparent.png" alt="BECK logo by Asilbek">
-            </a>
-            <nav aria-label="Main navigation">
-                <a href="#about">About</a>
+            <a class="brand" href="#home" aria-label="BECK by Asilbek, home">bec<span>K</span></a>
+            <nav class="nav" aria-label="Main navigation">
+                <a class="hide-sm" href="#about">About</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Projects</a>
-                <a class="nav-contact" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a class="pill" href="#contact">Contact</a>
             </nav>
         </header>
 
         <main id="main" tabindex="-1">
             <section class="hero" id="home" aria-labelledby="hero-title">
-                <div class="hero-copy">
-                    <p class="eyebrow">BECK / WEB DEVELOPER IN PROGRESS</p>
-                    <h1 id="hero-title">A little code.<br><span>A lot of care.</span></h1>
-                    <p class="hero-intro">I’m Asilbek, a web programming student and the creator behind BECK. I’m learning to make useful, accessible web experiences with thoughtful design and a little personality.</p>
-                    <div class="hero-actions">
-                        <a class="button button-primary" href="#projects">Explore my projects <span aria-hidden="true">↓</span></a>
-                        <a class="button button-secondary" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">Visit my GitHub <span aria-hidden="true">↗</span></a>
+                <div>
+                    <p class="eyebrow">Front-end developer · Computer Engineering student</p>
+                    <h1 id="hero-title">Hi, I’m Asilbek<span>.</span></h1>
+                    <p class="hero-tagline">I build accessible, responsive websites with clean code and careful detail.</p>
+                    <p class="lede">BECK is my personal brand and portfolio — a home for the projects I design, code and ship while studying web programming.</p>
+                    <div class="actions">
+                        <a class="button button-accent" href="#projects">View my work <span aria-hidden="true">↓</span></a>
+                        <a class="button button-ghost" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub profile <span aria-hidden="true">↗</span></a>
                     </div>
                 </div>
-                <aside class="profile-card" aria-label="BECK brand identity">
-                    <p class="profile-label">INDEPENDENT WEB PRACTICE · 001</p>
-                    <img class="profile-logo" src="beck-logo-transparent.png" alt="BECK, the personal creative brand of Asilbek">
-                    <p class="profile-caption">An evolving collection of things built with curiosity.</p>
+
+                <aside class="profile-card" aria-label="Profile">
+                    <img class="avatar" src="avatar.svg" alt="Portrait of Asilbek" width="112" height="112">
+                    <div>
+                        <p class="profile-name">Asilbek</p>
+                        <p class="profile-role">Web developer · Student</p>
+                    </div>
+                    <img class="profile-logo" src="beck-logo-transparent.png" alt="BECK logo" width="180" height="96">
+                    <ul class="profile-facts">
+                        <li><span>Focus</span>Front-end &amp; accessibility</li>
+                        <li><span>Stack</span>HTML · CSS · JavaScript</li>
+                        <li><span>Ships to</span>GitHub Pages</li>
+                    </ul>
                 </aside>
             </section>
 
-            <section class="content-section" id="about" aria-labelledby="about-title">
-                <p class="section-kicker">01 / THE PERSON BEHIND BECK</p>
-                <h2 id="about-title">Curiosity into craft.</h2>
-                <p class="about-copy">BECK is my creative identity for exploring ideas and shaping them into polished web experiences. I’m Asilbek, a student learning the craft of front-end development through hands-on projects—from accessible course work to a campus community app. I care about clean structure, responsive layouts, and making digital experiences welcoming to everyone.</p>
+            <ul class="stats" aria-label="Highlights">
+                <li><strong>100</strong><span>Lighthouse accessibility score</span></li>
+                <li><strong>9</strong><span>Weeks of documented course work</span></li>
+                <li><strong>6</strong><span>Browser APIs in one playground</span></li>
+                <li><strong>1</strong><span>Live team product — Overlap</span></li>
+            </ul>
+
+            <section class="section" id="about" aria-labelledby="about-title">
+                <div class="section-heading">
+                    <span class="section-index">01 /</span>
+                    <div>
+                        <p class="section-label">About</p>
+                        <h2 id="about-title">Curiosity into craft.</h2>
+                    </div>
+                </div>
+                <div class="about-grid">
+                    <div class="about-copy">
+                        <p>I’m Asilbek, a Computer Engineering student learning front-end development through real, hands-on projects — from weekly course exercises to a campus community app used by other students.</p>
+                        <p>I care about the details people feel but rarely notice: semantic structure, keyboard access, readable contrast, fast loading, and layouts that hold up on any screen.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-label">How I work</h3>
+                        <ol class="steps">
+                            <li><strong>Structure first.</strong> Semantic HTML and clear landmarks.</li>
+                            <li><strong>Design for everyone.</strong> WCAG contrast, focus states, skip links.</li>
+                            <li><strong>Measure it.</strong> Lighthouse audits before and after.</li>
+                            <li><strong>Ship it.</strong> Version control and live deploys on GitHub Pages.</li>
+                        </ol>
+                    </div>
+                </div>
             </section>
 
-            <section class="content-section" id="skills" aria-labelledby="skills-title">
-                <p class="section-kicker">02 / WHAT I’M LEARNING</p>
-                <h2 id="skills-title">Tools for the web.</h2>
-                <ul class="skills-list">
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
-                    <li>Responsive design</li>
-                    <li>Accessibility</li>
-                    <li>Browser APIs</li>
-                    <li>Git &amp; GitHub</li>
-                </ul>
+            <section class="section" id="skills" aria-labelledby="skills-title">
+                <div class="section-heading">
+                    <span class="section-index">02 /</span>
+                    <div>
+                        <p class="section-label">Skills</p>
+                        <h2 id="skills-title">Tools for the web.</h2>
+                    </div>
+                </div>
+                <div class="skills-grid">
+                    <div class="card">
+                        <h3 class="card-label">Languages</h3>
+                        <ul class="chips"><li>HTML5</li><li>CSS3</li><li>JavaScript (ES6+)</li></ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-label">Practices</h3>
+                        <ul class="chips"><li>Responsive design</li><li>Accessibility (WCAG)</li><li>Performance</li><li>Form validation</li></ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-label">Browser APIs</h3>
+                        <ul class="chips"><li>Fetch</li><li>Web Storage</li><li>Geolocation</li><li>Canvas</li></ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-label">Tools</h3>
+                        <ul class="chips"><li>Git &amp; GitHub</li><li>GitHub Pages</li><li>Lighthouse</li><li>DevTools</li></ul>
+                    </div>
+                </div>
             </section>
 
-            <section class="content-section" id="projects" aria-labelledby="projects-title">
-                <p class="section-kicker">03 / SELECTED WORK</p>
-                <h2 id="projects-title">Made while learning.</h2>
-                <div class="project-grid">
-                    <article class="project-card">
-                        <p class="project-number">01 · TEAM PROJECT</p>
+            <section class="section" id="projects" aria-labelledby="projects-title">
+                <div class="section-heading">
+                    <span class="section-index">03 /</span>
+                    <div>
+                        <p class="section-label">Selected work</p>
+                        <h2 id="projects-title">Things I’ve made.</h2>
+                    </div>
+                </div>
+
+                <article class="project-feature">
+                    <div>
+                        <p class="project-type">01 · Team project · Campus community</p>
                         <h3>Overlap</h3>
-                        <p>A campus introduction app that helps students find common ground and meet people with shared interests.</p>
-                        <p class="project-stack">TEAM PROJECT · CAMPUS COMMUNITY</p>
-                        <a href="https://overlaps.tech" target="_blank" rel="noopener noreferrer">Visit Overlap <span aria-hidden="true">↗</span></a>
-                        <a class="project-source" href="https://github.com/asilbek-maker/Web-Programming/tree/main/Overlap" target="_blank" rel="noopener noreferrer">Project materials <span aria-hidden="true">↗</span></a>
-                    </article>
-                    <article class="project-card">
-                        <p class="project-number">02 · ACCESSIBILITY</p>
+                        <p class="project-description">A campus introduction app that helps students find common ground and meet people with shared interests.</p>
+                        <ul class="chips chips-dark" aria-label="Project tags"><li>Team project</li><li>Product</li><li>Live</li></ul>
+                    </div>
+                    <div class="project-links">
+                        <a class="button button-primary" href="https://overlaps.tech" target="_blank" rel="noopener noreferrer">Visit Overlap <span aria-hidden="true">↗</span></a>
+                        <a class="button button-ghost" href="https://github.com/asilbek-maker/Web-Programming/tree/main/Overlap" target="_blank" rel="noopener noreferrer">Project materials <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+
+                <div class="project-grid">
+                    <article class="card project-card">
+                        <p class="project-type">02 · Accessibility</p>
                         <h3>Lighthouse accessibility audit</h3>
-                        <p>Improved color contrast and keyboard navigation on my course homepage, reaching a 100/100 Lighthouse accessibility score.</p>
-                        <p class="project-stack">HTML · CSS · LIGHTHOUSE</p>
-                        <a href="https://asilbek-maker.github.io/Web-Programming/Week9/Week9_1/" target="_blank" rel="noopener noreferrer">Explore the audit <span aria-hidden="true">↗</span></a>
-                        <a class="project-source" href="https://github.com/asilbek-maker/Web-Programming/tree/main/Week9/Week9_1" target="_blank" rel="noopener noreferrer">View project files <span aria-hidden="true">↗</span></a>
+                        <p>Improved colour contrast and keyboard navigation on my course homepage, reaching a 100/100 Lighthouse accessibility score.</p>
+                        <p class="stack">HTML · CSS · Lighthouse</p>
+                        <div class="card-links">
+                            <a href="https://asilbek-maker.github.io/Web-Programming/Week9/Week9_1/" target="_blank" rel="noopener noreferrer">Read the audit <span aria-hidden="true">↗</span></a>
+                            <a href="https://github.com/asilbek-maker/Web-Programming/tree/main/Week9/Week9_1" target="_blank" rel="noopener noreferrer">Source <span aria-hidden="true">↗</span></a>
+                        </div>
                     </article>
-                    <article class="project-card">
-                        <p class="project-number">03 · INTERACTIVE DEMOS</p>
+                    <article class="card project-card">
+                        <p class="project-type">03 · Interactive demos</p>
                         <h3>Browser API playground</h3>
-                        <p>A hands-on set of six browser API examples, including Fetch, local storage, geolocation, and Canvas.</p>
-                        <p class="project-stack">HTML · CSS · JAVASCRIPT</p>
-                        <a href="https://asilbek-maker.github.io/Web-Programming/Week6/Week6_2/" target="_blank" rel="noopener noreferrer">Try the demos <span aria-hidden="true">↗</span></a>
-                        <a class="project-source" href="https://github.com/asilbek-maker/Web-Programming/tree/main/Week6/Week6_2" target="_blank" rel="noopener noreferrer">View project files <span aria-hidden="true">↗</span></a>
+                        <p>A hands-on set of six browser API examples, including Fetch, local storage, geolocation and Canvas.</p>
+                        <p class="stack">HTML · CSS · JavaScript</p>
+                        <div class="card-links">
+                            <a href="https://asilbek-maker.github.io/Web-Programming/Week6/Week6_2/" target="_blank" rel="noopener noreferrer">Try the demos <span aria-hidden="true">↗</span></a>
+                            <a href="https://github.com/asilbek-maker/Web-Programming/tree/main/Week6/Week6_2" target="_blank" rel="noopener noreferrer">Source <span aria-hidden="true">↗</span></a>
+                        </div>
                     </article>
+                    <article class="card project-card">
+                        <p class="project-type">04 · API app</p>
+                        <h3>Book Finder</h3>
+                        <p>A book search app that fetches results from a public API, with loading and error states.</p>
+                        <p class="stack">JavaScript · Fetch API</p>
+                        <div class="card-links">
+                            <a href="https://asilbek-maker.github.io/Web-Programming/Week7/Week7%20Monday/" target="_blank" rel="noopener noreferrer">Open the app <span aria-hidden="true">↗</span></a>
+                            <a href="https://github.com/asilbek-maker/Web-Programming/tree/main/Week7/Week7%20Monday" target="_blank" rel="noopener noreferrer">Source <span aria-hidden="true">↗</span></a>
+                        </div>
+                    </article>
+                </div>
+
+                <a class="archive-link" href="https://asilbek-maker.github.io/Web-Programming/">
+                    <span>
+                        <span class="section-label">Course archive</span>
+                        <strong>See every weekly assignment, week by week</strong>
+                    </span>
+                    <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+            </section>
+
+            <section class="contact" id="contact" aria-labelledby="contact-title">
+                <p class="eyebrow">04 / Contact</p>
+                <h2 id="contact-title">Let’s build something<span>.</span></h2>
+                <p class="lede">I’m always open to feedback, collaboration and new projects. The best way to reach me is on GitHub.</p>
+                <div class="actions">
+                    <a class="button button-accent" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">Message me on GitHub <span aria-hidden="true">↗</span></a>
+                    <a class="button button-ghost" href="https://asilbek-maker.github.io/">Main website <span aria-hidden="true">→</span></a>
                 </div>
             </section>
         </main>
 
         <footer class="site-footer">
-            <p>© 2026 BECK by Asilbek · Built with curiosity.</p>
-            <a href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            <p>© 2026 BECK BY ASILBEK</p>
+            <a href="https://github.com/asilbek-maker/portfolio" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a>
         </footer>
     </div>
 </body>
