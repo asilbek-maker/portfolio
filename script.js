@@ -144,5 +144,16 @@
         })();
     }
 
+    /* ---------- Interactive skill cards ---------- */
+    document.querySelectorAll(".skill-toggle").forEach(function (button) {
+        button.addEventListener("click", function () {
+            const open = button.getAttribute("aria-expanded") !== "true";
+            const panel = document.getElementById(button.getAttribute("aria-controls"));
+            button.setAttribute("aria-expanded", String(open));
+            panel.hidden = !open;
+            button.closest(".skill-card").classList.toggle("is-open", open);
+        });
+    });
+
     window.BECK = { reduceMotion: reduceMotion };
 })();

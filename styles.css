@@ -905,3 +905,138 @@ html.lenis, html.lenis body { height: auto; }
 
 .nav a.is-current { color: var(--accent); }
 .nav a.pill.is-current { border-color: var(--accent); }
+
+/* ---------- Skills ticker ---------- */
+.ticker {
+    margin: 0 0 28px;
+    padding: 14px 0;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.ticker-track {
+    display: flex;
+    width: max-content;
+    gap: 40px;
+    animation: ticker 32s linear infinite;
+}
+
+.ticker:hover .ticker-track { animation-play-state: paused; }
+
+.ticker span {
+    display: inline-flex;
+    align-items: center;
+    gap: 40px;
+    color: var(--ink);
+    font-size: clamp(1.2rem, 2.4vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: -.03em;
+    white-space: nowrap;
+}
+
+.ticker span::after { color: var(--accent); content: "✦"; font-size: .7em; }
+
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+/* ---------- Interactive skill cards ---------- */
+.skills-hint {
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: .74rem;
+    letter-spacing: .06em;
+}
+
+.skills-grid { align-items: start; }
+
+.skill-card { transition: border-color 200ms ease, transform 200ms ease; }
+.skill-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.skill-card.is-open { border-color: var(--accent); }
+
+.skill-card h3 { margin: 0 0 16px; }
+
+.skill-toggle {
+    position: relative;
+    display: grid;
+    width: 100%;
+    gap: 2px;
+    padding: 0 34px 0 0;
+    border: 0;
+    background: none;
+    color: var(--ink);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.skill-toggle .card-label { margin: 0; }
+.skill-name { font-size: 1.35rem; font-weight: 700; letter-spacing: -.04em; }
+
+.skill-plus {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    transition: transform 220ms ease, background 220ms ease, border-color 220ms ease;
+}
+
+.skill-plus::before,
+.skill-plus::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 2px;
+    margin: -1px 0 0 -5px;
+    background: currentColor;
+    content: "";
+}
+
+.skill-plus::after { transform: rotate(90deg); }
+
+.skill-toggle[aria-expanded="true"] .skill-plus { transform: rotate(45deg); border-color: var(--accent); background: var(--accent); color: var(--ink-dark); }
+
+.skill-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 6px; border-radius: 6px; }
+
+.skill-detail {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line-strong);
+    animation: detail-in 260ms ease;
+}
+
+.skill-detail p {
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: .7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.skill-detail ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+
+.skill-detail a {
+    display: block;
+    color: var(--body);
+    font-size: .86rem;
+    line-height: 1.5;
+    text-decoration: none;
+}
+
+.skill-detail a::before { margin-right: 8px; color: var(--accent); content: "↗"; }
+.skill-detail a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+@keyframes detail-in { from { opacity: 0; transform: translateY(-6px); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .ticker { mask-image: none; }
+    .ticker-track { animation: none; flex-wrap: wrap; width: auto; }
+    .ticker-track span:nth-child(n+11) { display: none; }
+    .skill-detail { animation: none; }
+}
