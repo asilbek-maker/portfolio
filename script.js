@@ -112,5 +112,37 @@
         });
     }
 
+    /* ---------- Typing animation in the editor hero ---------- */
+    const code = document.getElementById("typed-code");
+    if (code && !reduceMotion) {
+        // Remember each piece of text and the colour class it belongs to
+        const segments = Array.from(code.childNodes).map(function (node) {
+            return { cls: node.nodeType === 1 ? node.className : "", text: node.textContent };
+        });
+        const caret = document.createElement("span");
+        caret.className = "caret";
+        code.textContent = "";
+        code.appendChild(caret);
+
+        let seg = 0;
+        let pos = 0;
+        let current = null;
+
+        (function type() {
+            if (seg >= segments.length) return;
+            const part = segments[seg];
+            if (pos === 0) {
+                current = part.cls ? document.createElement("span") : document.createTextNode("");
+                if (part.cls) current.className = part.cls;
+                code.insertBefore(current, caret);
+            }
+            current.textContent += part.text.charAt(pos);
+            pos += 1;
+            if (pos >= part.text.length) { seg += 1; pos = 0; }
+            const ch = part.text.charAt(pos - 1);
+            setTimeout(type, ch.charCodeAt(0) === 10 ? 120 : 22);
+        })();
+    }
+
     window.BECK = { reduceMotion: reduceMotion };
 })();
