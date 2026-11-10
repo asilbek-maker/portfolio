@@ -1040,3 +1040,25 @@ html.lenis, html.lenis body { height: auto; }
     .ticker-track span:nth-child(n+11) { display: none; }
     .skill-detail { animation: none; }
 }
+
+/* ---------- Mobile layout fixes ---------- */
+@media (max-width: 640px) {
+    .editor { margin-bottom: 24px; }
+    .editor-badge {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: max-content;
+        margin: 12px 12px 12px auto;
+        transform: none;
+        box-shadow: none;
+    }
+    .editor-status { gap: 12px; flex-wrap: wrap; }
+    .ticker span { font-size: 1.1rem; gap: 24px; }
+    .ticker-track { gap: 24px; }
+}
+
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+    .ticker-track { gap: 10px 20px; }
+    .ticker span { font-size: .95rem; gap: 20px; }
+}
