@@ -218,7 +218,7 @@
                         <span class="stage-step" aria-hidden="true">4</span>
                         <div class="stage-body">
                             <h3>Developing real-world projects</h3>
-                            <p>Working on Overlap with a team, auditing accessibility from 95 to 100, and deploying my work to GitHub Pages.</p>
+                            <p>Working in teams on Overlap and PharmVault, building my own app Life Agent, auditing accessibility from 95 to 100, and deploying my work to the web.</p>
                             <a href="#work">See my projects</a>
                         </div>
                         <span class="stage-state">Building now</span>
@@ -327,6 +327,48 @@
                         </div>
                     </article>
 
+                    <article class="project project-wide">
+                        <a class="project-shot" href="https://pharmvault-u5k0.onrender.com" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                            <img src="images/pharmvault.png" alt="" width="1280" height="800" loading="lazy">
+                        </a>
+                        <div class="project-info">
+                            <p class="project-kind">Team project</p>
+                            <h3>PharmVault</h3>
+                            <p>A database-driven pharmacy management system that helps a local pharmacy manage its medicine stock, pharma companies, ingredients and illnesses.</p>
+                            <dl class="project-meta">
+                                <div><dt>Built with</dt><dd>Python, Flask, PostgreSQL, JavaScript</dd></div>
+                                <div><dt>My role</dt><dd>Team member</dd></div>
+                                <div><dt>Challenge</dt><dd>Warning a pharmacy before medicines run low or expire</dd></div>
+                            </dl>
+                            <div class="project-actions">
+                                <button class="btn btn-small" type="button" data-case="case-pharmvault">Case study</button>
+                                <a class="text-link" href="https://pharmvault-u5k0.onrender.com" target="_blank" rel="noopener noreferrer">Open the app<span class="visually-hidden"> (opens in a new tab)</span></a>
+                                <a class="text-link" href="https://github.com/Shuhratkhon/pharmvault" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> (opens in a new tab)</span></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project project-wide">
+                        <a class="project-shot" href="https://asilbek-maker.github.io/Life-Agent/" tabindex="-1" aria-hidden="true">
+                            <img src="images/life-agent.png" alt="" width="1280" height="800" loading="lazy">
+                        </a>
+                        <div class="project-info">
+                            <p class="project-kind">Personal project</p>
+                            <h3>Life Agent</h3>
+                            <p>My own life-tracking app with an AI coach: gym plans, study sessions, work, health, mood, goals and reminders, with weekly to yearly reports.</p>
+                            <dl class="project-meta">
+                                <div><dt>Built with</dt><dd>HTML, CSS, JavaScript, PWA</dd></div>
+                                <div><dt>My role</dt><dd>Creator</dd></div>
+                                <div><dt>Challenge</dt><dd>A phone app without the App Store</dd></div>
+                            </dl>
+                            <div class="project-actions">
+                                <button class="btn btn-small" type="button" data-case="case-life">Case study</button>
+                                <a class="text-link" href="https://asilbek-maker.github.io/Life-Agent/">Open the app</a>
+                                <a class="text-link" href="https://github.com/asilbek-maker/Life-Agent">Source</a>
+                            </div>
+                        </div>
+                    </article>
+
                     <article class="project">
                         <a class="project-shot" href="https://asilbek-maker.github.io/Web-Programming/Week6/Week6_2/" tabindex="-1" aria-hidden="true">
                             <img src="images/browser-apis.png" alt="" width="1280" height="800" loading="lazy">
@@ -415,6 +457,51 @@
                 <div class="project-actions">
                     <a class="btn btn-primary" href="https://overlaps.tech/" target="_blank" rel="noopener noreferrer">Visit overlaps.tech<span class="visually-hidden"> (opens in a new tab)</span></a>
                     <a class="btn btn-line" href="https://github.com/asilbek-maker/Web-Programming/tree/main/Overlap">Project materials</a>
+                </div>
+            </div>
+        </dialog>
+
+        <dialog class="case" id="case-pharmvault" aria-labelledby="case-pharmvault-title">
+            <div class="case-inner">
+                <button class="case-close" type="button" aria-label="Close case study">Close</button>
+                <p class="project-kind">Case study</p>
+                <h2 id="case-pharmvault-title">PharmVault</h2>
+                <img class="case-shot" src="images/pharmvault.png" alt="PharmVault's sign-in screen asking for a pharmacy name" width="1280" height="800" loading="lazy">
+                <h3>The idea</h3>
+                <p>A local pharmacy needs to know what it has, what is running low and what is about to expire. PharmVault keeps medicines, pharma companies, ingredients and illnesses in one database with a simple interface.</p>
+                <h3>What it does</h3>
+                <p>Each pharmacy signs in to its own stock. Next to it is a read-only Web Stock catalogue of more than 18,000 real medicines from US public data. Search covers names, ingredients, illnesses and companies at once, and prices, quantities and expiry dates can be edited right in the table.</p>
+                <h3>The challenge</h3>
+                <p>Spotting problems before they happen. Low stock and close expiry dates turn yellow or red — with different limits for each medicine form — and a watchlist collects everything that needs attention. Every change is recorded in a history.</p>
+                <h3>How it’s built</h3>
+                <p>Python and Flask serve a JSON API backed by PostgreSQL, with a JavaScript front-end and Chart.js dashboards. It runs on Render with an online Neon database.</p>
+                <h3>My role</h3>
+                <p>Team member. <!-- Asilbek: describe what you worked on here. --></p>
+                <p class="case-note">The live app is on free hosting, so the first visit can take about 30 seconds to wake up.</p>
+                <div class="project-actions">
+                    <a class="btn btn-primary" href="https://pharmvault-u5k0.onrender.com" target="_blank" rel="noopener noreferrer">Open PharmVault<span class="visually-hidden"> (opens in a new tab)</span></a>
+                    <a class="btn btn-line" href="https://github.com/Shuhratkhon/pharmvault" target="_blank" rel="noopener noreferrer">View source<span class="visually-hidden"> (opens in a new tab)</span></a>
+                </div>
+            </div>
+        </dialog>
+
+        <dialog class="case" id="case-life" aria-labelledby="case-life-title">
+            <div class="case-inner">
+                <button class="case-close" type="button" aria-label="Close case study">Close</button>
+                <p class="project-kind">Case study</p>
+                <h2 id="case-life-title">Life Agent</h2>
+                <img class="case-shot" src="images/life-agent.png" alt="Life Agent's home screen with weekly gym, study, work, health, mood and goals cards" width="1280" height="800" loading="lazy">
+                <h3>The idea</h3>
+                <p>I wanted one place to track my training, study and wellbeing — and a coach that understands plain sentences like “bench 60kg 4x8, studied math 2h” and files each item in the right place.</p>
+                <h3>What it does</h3>
+                <p>A gym plan with guided workouts, a rest timer and a library of 105 exercises with photos. A Pomodoro study timer, daily logs for work, health and mood, goals and reminders, and reports for a day, week, month or year compared with the period before.</p>
+                <h3>The challenge</h3>
+                <p>I wanted it on my phone without publishing to an app store. It’s an installable web app: add it to the home screen and it saves data on the device, with a backup and restore option so nothing is lost.</p>
+                <h3>What I learned</h3>
+                <p>How installable web apps work, how to design for a small touch screen, and how to direct an AI coding assistant to build something I actually use every day.</p>
+                <div class="project-actions">
+                    <a class="btn btn-primary" href="https://asilbek-maker.github.io/Life-Agent/">Open Life Agent</a>
+                    <a class="btn btn-line" href="https://github.com/asilbek-maker/Life-Agent">View source</a>
                 </div>
             </div>
         </dialog>

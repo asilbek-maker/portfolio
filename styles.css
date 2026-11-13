@@ -754,11 +754,14 @@ main:focus { outline: none; }
 /* ---------- Sheet 5: projects ---------- */
 .projects {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 48px 32px;
 }
 
-.project { display: grid; align-content: start; gap: 20px; }
+/* lead = full row, wide = half row, regular = third of a row */
+.project { display: grid; grid-column: span 2; align-content: start; gap: 20px; }
+.project-wide { grid-column: span 3; padding-bottom: 48px; border-bottom: 1px solid var(--rule); }
+.project-wide h3 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-variation-settings: "wdth" 114; font-weight: 820; }
 
 .project-lead {
     grid-column: 1 / -1;
@@ -869,6 +872,7 @@ main:focus { outline: none; }
 .case h3 { margin: 28px 0 8px; font-size: 1.1rem; }
 .case p { max-width: 62ch; color: var(--pencil); }
 .case .project-actions { margin-top: 32px; }
+.case .case-note { margin-top: 20px; padding: 10px 14px; border-left: 3px solid var(--red); background: var(--sheet); color: var(--ink); }
 
 .case-shot {
     width: 100%;
@@ -1056,6 +1060,7 @@ html.lenis, html.lenis body { height: auto; }
     .hero-grid { grid-template-columns: 1fr; }
     .hero-console { max-width: 620px; }
     .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .project, .project-wide { grid-column: span 1; }
     .project-lead { grid-template-columns: 1fr; }
     .beyond { grid-template-columns: 1fr; }
     .route { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; }
@@ -1127,6 +1132,7 @@ html.lenis, html.lenis body { height: auto; }
     .skill-groups { grid-template-columns: 1fr; }
 
     .projects { grid-template-columns: 1fr; }
+    .project-wide { padding-bottom: 40px; }
     .project-lead { padding-bottom: 40px; }
 
     .beyond-list { grid-template-columns: 1fr; }

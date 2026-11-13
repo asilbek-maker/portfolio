@@ -143,9 +143,11 @@
         projects: function () {
             return [
                 { text: "01 Overlap — campus community platform", href: "#work" },
-                { text: "02 Browser API playground — six demos", href: "#work" },
-                { text: "03 Book Finder — Open Library search", href: "#work" },
-                { text: "04 Accessibility audit — 95 to 100", href: "#work" },
+                { text: "02 PharmVault — pharmacy stock manager", href: "#work" },
+                { text: "03 Life Agent — my life tracker with an AI coach", href: "#work" },
+                { text: "04 Browser API playground — six demos", href: "#work" },
+                { text: "05 Book Finder — Open Library search", href: "#work" },
+                { text: "06 Accessibility audit — 95 to 100", href: "#work" },
                 ["Open a project card to read its case study.", "t-muted"]
             ];
         },
