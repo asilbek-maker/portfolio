@@ -1,159 +1,301 @@
-// BECK portfolio interactions
+// BECK — interactions
+// Sections: theme, mobile menu, smooth scroll, current section, terminal, case studies, copy email.
 (function () {
     "use strict";
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var root = document.documentElement;
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    /* ---------- Mobile hamburger drawer ---------- */
-    const toggle = document.querySelector(".menu-toggle");
-    const nav = document.getElementById("site-nav");
-    const backdrop = document.querySelector(".nav-backdrop");
+    /* ---------- Theme: paper / blueprint ---------- */
+    var themeBtn = document.querySelector(".theme-toggle");
+
+    function applyTheme(theme) {
+        root.dataset.theme = theme;
+        var blueprint = theme === "blueprint";
+        themeBtn.setAttribute("aria-pressed", String(blueprint));
+        themeBtn.querySelector(".theme-label").textContent = blueprint ? "Paper" : "Blueprint";
+        themeBtn.setAttribute("aria-label", blueprint ? "Switch to paper theme" : "Switch to blueprint theme");
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", blueprint ? "#14304D" : "#ECEEF0");
+    }
+
+    function setTheme(theme) {
+        applyTheme(theme);
+        try { localStorage.setItem("beck-theme", theme); } catch (e) {}
+    }
+
+    if (themeBtn) {
+        applyTheme(root.dataset.theme === "blueprint" ? "blueprint" : "paper");
+        themeBtn.addEventListener("click", function () {
+            setTheme(root.dataset.theme === "blueprint" ? "paper" : "blueprint");
+        });
+    }
+
+    /* ---------- Mobile menu ---------- */
+    var menuBtn = document.querySelector(".menu-toggle");
+    var nav = document.getElementById("site-nav");
+    var backdrop = document.querySelector(".nav-backdrop");
 
     function setMenu(open) {
-        toggle.setAttribute("aria-expanded", String(open));
-        toggle.querySelector(".menu-label").textContent = open ? "Close" : "Menu";
+        menuBtn.setAttribute("aria-expanded", String(open));
+        menuBtn.querySelector(".menu-label").textContent = open ? "Close" : "Menu";
         nav.classList.toggle("is-open", open);
         backdrop.hidden = !open;
         document.body.classList.toggle("menu-open", open);
         if (open) nav.querySelector("a").focus();
     }
 
-    if (toggle && nav) {
-        toggle.addEventListener("click", function () {
-            setMenu(toggle.getAttribute("aria-expanded") !== "true");
+    if (menuBtn && nav) {
+        menuBtn.addEventListener("click", function () {
+            setMenu(menuBtn.getAttribute("aria-expanded") !== "true");
         });
         backdrop.addEventListener("click", function () { setMenu(false); });
-        nav.addEventListener("click", function (event) {
-            if (event.target.closest("a")) setMenu(false);
+        nav.addEventListener("click", function (e) {
+            if (e.target.closest("a")) setMenu(false);
         });
-        document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape" && nav.classList.contains("is-open")) {
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && nav.classList.contains("is-open")) {
                 setMenu(false);
-                toggle.focus();
+                menuBtn.focus();
             }
         });
-        window.matchMedia("(min-width: 641px)").addEventListener("change", function (e) {
+        window.matchMedia("(min-width: 761px)").addEventListener("change", function (e) {
             if (e.matches) setMenu(false);
         });
     }
 
-
-    /* ---------- Smooth scrolling (Lenis) ---------- */
-    let lenis = null;
+    /* ---------- Smooth scrolling ---------- */
+    var lenis = null;
     if (!reduceMotion && window.Lenis) {
-        lenis = new window.Lenis({ duration: 1.1, smoothWheel: true });
+        lenis = new window.Lenis({ duration: 1.05, smoothWheel: true });
         (function raf(time) {
             lenis.raf(time);
             requestAnimationFrame(raf);
         })(performance.now());
     }
 
-    // In-page links: smooth scroll, then move keyboard focus to the target
-    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-        link.addEventListener("click", function (event) {
-            const id = link.getAttribute("href");
-            const target = id.length > 1 && document.querySelector(id);
-            if (!target) return;
-            event.preventDefault();
-            if (lenis) lenis.scrollTo(target, { offset: -16 });
-            else target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
-            history.replaceState(null, "", id);
-            if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
-            target.focus({ preventScroll: true });
-        });
+    function scrollToTarget(target) {
+        if (lenis) lenis.scrollTo(target, { offset: -76 });
+        else target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+        if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+        target.focus({ preventScroll: true });
+    }
+
+    document.addEventListener("click", function (e) {
+        var link = e.target.closest('a[href^="#"]');
+        if (!link) return;
+        var id = link.getAttribute("href");
+        var target = id.length > 1 && document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        history.replaceState(null, "", id === "#top" ? location.pathname : id);
+        scrollToTarget(target);
     });
 
-    /* ---------- Scroll progress bar ---------- */
-    const progress = document.querySelector(".scroll-progress");
-    function updateProgress() {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        progress.style.transform = "scaleX(" + (max > 0 ? window.scrollY / max : 0) + ")";
-    }
-    if (progress) {
-        window.addEventListener("scroll", updateProgress, { passive: true });
-        updateProgress();
-    }
-
-    /* ---------- Reveal on scroll ---------- */
-    const revealTargets = document.querySelectorAll(
-        ".section-heading, .card, .project-feature, .stats li, .archive-link, .contact, .editor"
-    );
-    if (!reduceMotion && "IntersectionObserver" in window) {
-        document.documentElement.classList.add("js-reveal");
-        const revealer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("is-visible");
-                    revealer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-        revealTargets.forEach(function (el, i) {
-            el.style.setProperty("--delay", (i % 4) * 70 + "ms");
-            if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("is-visible");
-            else revealer.observe(el);
-        });
-    }
-
     /* ---------- Highlight the current section in the nav ---------- */
-    const navLinks = Array.from(document.querySelectorAll(".nav a[href^='#']"));
-    if ("IntersectionObserver" in window && navLinks.length) {
-        const spy = new IntersectionObserver(function (entries) {
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
+    if ("IntersectionObserver" in window) {
+        var spy = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (!entry.isIntersecting) return;
                 navLinks.forEach(function (a) {
-                    a.classList.toggle("is-current", a.getAttribute("href") === "#" + entry.target.id);
+                    var on = a.getAttribute("href") === "#" + entry.target.id;
+                    a.classList.toggle("is-current", on);
+                    if (on) a.setAttribute("aria-current", "location");
+                    else a.removeAttribute("aria-current");
                 });
             });
         }, { rootMargin: "-45% 0px -50% 0px" });
-        navLinks.forEach(function (a) {
-            const section = document.querySelector(a.getAttribute("href"));
-            if (section) spy.observe(section);
+        ["top", "about", "journey", "skills", "work", "beyond", "exploring", "contact"].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) spy.observe(el);
         });
     }
 
-    /* ---------- Typing animation in the editor hero ---------- */
-    const code = document.getElementById("typed-code");
-    if (code && !reduceMotion) {
-        // Remember each piece of text and the colour class it belongs to
-        const segments = Array.from(code.childNodes).map(function (node) {
-            return { cls: node.nodeType === 1 ? node.className : "", text: node.textContent };
-        });
-        const caret = document.createElement("span");
-        caret.className = "caret";
-        code.textContent = "";
-        code.appendChild(caret);
+    /* ---------- The BECK terminal ---------- */
+    var log = document.querySelector(".terminal-log");
+    var form = document.querySelector(".terminal-form");
+    var input = document.getElementById("terminal-input");
 
-        let seg = 0;
-        let pos = 0;
-        let current = null;
+    // Each command returns lines. A line is a string, or [text, className], or {text, href}.
+    var commands = {
+        help: function () {
+            return [
+                ["Available commands:", "t-muted"],
+                ["  whoami    who is behind BECK", "t-out"],
+                ["  projects  what I've built", "t-out"],
+                ["  journey   how I got here", "t-out"],
+                ["  skills    what I can do", "t-out"],
+                ["  now       what I'm exploring", "t-out"],
+                ["  contact   how to reach me", "t-out"],
+                ["  theme     switch paper / blueprint", "t-out"],
+                ["  clear     clear the screen", "t-out"]
+            ];
+        },
+        whoami: function () {
+            return [
+                ["Asilbek", "t-key"],
+                "Computer Engineering student",
+                "Front-end developer",
+                "Aspiring AI engineer",
+                ["Building ideas into things people can use.", "t-muted"]
+            ];
+        },
+        projects: function () {
+            return [
+                { text: "01 Overlap — campus community platform", href: "#work" },
+                { text: "02 Browser API playground — six demos", href: "#work" },
+                { text: "03 Book Finder — Open Library search", href: "#work" },
+                { text: "04 Accessibility audit — 95 to 100", href: "#work" },
+                ["Open a project card to read its case study.", "t-muted"]
+            ];
+        },
+        journey: function () {
+            return [
+                ["[built]    fundamentals: HTML, CSS", "t-out"],
+                ["[built]    interactive sites: JavaScript, DOM", "t-out"],
+                ["[built]    APIs and browser technologies", "t-out"],
+                ["[building] real-world projects", "t-key"],
+                ["[next]     AI and intelligent applications", "t-muted"]
+            ];
+        },
+        skills: function () {
+            return [
+                ["frontend   HTML5  CSS3  JavaScript  (React: practising)", "t-out"],
+                ["web        Fetch  Web Storage  Browser APIs  Forms", "t-out"],
+                ["tools      Git  GitHub  VS Code  DevTools  Lighthouse", "t-out"],
+                ["exploring  Python  AI  Machine learning", "t-key"]
+            ];
+        },
+        now: function () {
+            return [
+                ["You are here: Python", "t-key"],
+                "Next: machine learning fundamentals",
+                "Then: AI engineering",
+                ["Goal: useful AI applications", "t-muted"]
+            ];
+        },
+        contact: function () {
+            return [
+                { text: "email   asilbek@gachon.ac.kr", href: "mailto:asilbek@gachon.ac.kr" },
+                { text: "github  github.com/asilbek-maker", href: "https://github.com/asilbek-maker" }
+            ];
+        },
+        theme: function () {
+            var next = root.dataset.theme === "blueprint" ? "paper" : "blueprint";
+            setTheme(next);
+            return [["Theme set to " + next + ".", "t-muted"]];
+        },
+        clear: function () {
+            log.textContent = "";
+            return [];
+        }
+    };
 
-        (function type() {
-            if (seg >= segments.length) return;
-            const part = segments[seg];
-            if (pos === 0) {
-                current = part.cls ? document.createElement("span") : document.createTextNode("");
-                if (part.cls) current.className = part.cls;
-                code.insertBefore(current, caret);
-            }
-            current.textContent += part.text.charAt(pos);
-            pos += 1;
-            if (pos >= part.text.length) { seg += 1; pos = 0; }
-            const ch = part.text.charAt(pos - 1);
-            setTimeout(type, ch.charCodeAt(0) === 10 ? 120 : 22);
-        })();
+    // A few friendly aliases
+    commands.ls = commands.projects;
+    commands.about = commands.whoami;
+    commands.hire = commands.contact;
+
+    function print(line) {
+        var p = document.createElement("p");
+        if (typeof line === "string") {
+            p.className = "t-out";
+            p.textContent = line;
+        } else if (Array.isArray(line)) {
+            p.className = line[1];
+            p.textContent = line[0];
+        } else {
+            var a = document.createElement("a");
+            a.href = line.href;
+            a.textContent = line.text;
+            if (line.href.indexOf("http") === 0) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+            p.appendChild(a);
+        }
+        log.appendChild(p);
     }
 
-    /* ---------- Interactive skill cards ---------- */
-    document.querySelectorAll(".skill-toggle").forEach(function (button) {
-        button.addEventListener("click", function () {
-            const open = button.getAttribute("aria-expanded") !== "true";
-            const panel = document.getElementById(button.getAttribute("aria-controls"));
-            button.setAttribute("aria-expanded", String(open));
-            panel.hidden = !open;
-            button.closest(".skill-card").classList.toggle("is-open", open);
+    function run(raw) {
+        var cmd = raw.trim().toLowerCase();
+        if (!cmd) return;
+        var echo = document.createElement("p");
+        echo.className = "t-cmd";
+        echo.textContent = cmd;
+        log.appendChild(echo);
+
+        var name = cmd.split(/\s+/)[0];
+        var handler = commands[name];
+        var lines = handler
+            ? handler()
+            : [["Command not found: " + name + ". Type help to see what you can run.", "t-muted"]];
+        lines.forEach(print);
+        log.scrollTop = log.scrollHeight;
+    }
+
+    if (form && log && input) {
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            run(input.value);
+            input.value = "";
+        });
+
+        document.querySelectorAll(".terminal-shortcuts button").forEach(function (btn) {
+            btn.addEventListener("click", function () { run(btn.dataset.cmd); });
+        });
+
+        // One orchestrated moment on load: type "whoami" and run it
+        var intro = "whoami";
+        if (reduceMotion) {
+            run(intro);
+        } else {
+            var i = 0;
+            setTimeout(function typeIntro() {
+                input.value = intro.slice(0, ++i);
+                if (i < intro.length) setTimeout(typeIntro, 90);
+                else setTimeout(function () { run(intro); input.value = ""; }, 260);
+            }, 700);
+        }
+    }
+
+    /* ---------- Case-study dialogs ---------- */
+    var lastTrigger = null;
+
+    document.querySelectorAll("[data-case]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            var dialog = document.getElementById(btn.dataset.case);
+            if (!dialog || typeof dialog.showModal !== "function") return;
+            lastTrigger = btn;
+            dialog.showModal();
+            if (lenis) lenis.stop();
+            dialog.querySelector(".case-close").focus();
         });
     });
 
-    window.BECK = { reduceMotion: reduceMotion };
+    document.querySelectorAll("dialog.case").forEach(function (dialog) {
+        dialog.querySelector(".case-close").addEventListener("click", function () { dialog.close(); });
+        // Click on the dimmed backdrop closes it
+        dialog.addEventListener("click", function (e) {
+            if (e.target === dialog) dialog.close();
+        });
+        dialog.addEventListener("close", function () {
+            if (lenis) lenis.start();
+            if (lastTrigger) lastTrigger.focus();
+        });
+    });
+
+    /* ---------- Copy email ---------- */
+    var status = document.querySelector(".copy-status");
+    document.querySelectorAll("[data-copy]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            var text = btn.dataset.copy;
+            if (!navigator.clipboard) {
+                status.textContent = "Copying isn’t available here. The address is " + text + ".";
+                return;
+            }
+            navigator.clipboard.writeText(text).then(function () {
+                status.textContent = "Email copied: " + text;
+            }, function () {
+                status.textContent = "Couldn’t copy automatically. The address is " + text + ".";
+            });
+        });
+    });
 })();
